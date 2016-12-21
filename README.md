@@ -29,9 +29,14 @@ apply plugin: 'com.google.gms.google-services' // <- Add this line
 
 install pod 'Firebase/Core'
 
+on TARGETS: RNFIRAnalytics
+Allow Non-modular Includes In Framewrok Modules => Yes
+
 in AppDelegate.m add
 ```diff
 ...
+
++ @import Firebase;
 
  - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
@@ -57,15 +62,15 @@ componentWillMount() {
   if (environment === 'staging') {
     Analytics.setEnabled(false);
   }
-  
-  
+
+
   Analytics.setUserId('11111');
   Analytics.setUserProperty('propertyName', 'propertyValue');
 
   Analytics.logEvent('view_item', {
     'item_id': 'login'
   });
-   
+
 }
 ```
 
